@@ -1,0 +1,24 @@
+without warning
+
+include EuRay4.ew
+include flags.e
+
+atom Width = 800
+atom Height = 600
+
+InitWindow(Width,Height,"Simple Window")
+
+SetTargetFPS(60)
+
+while not WindowShouldClose() do
+	BeginDrawing()
+	
+    ClearBackground(BLACK)
+    
+	DrawText("Hello World",800 / 2, 600 / 2,20,YELLOW)
+	
+    EndDrawing()
+end while
+
+CloseWindow()
+­18.42

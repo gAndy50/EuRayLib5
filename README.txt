@@ -17,28 +17,6 @@ Raylib DLL. Some examples are included to help you use this wrapper.
 
 This uses the new FFI library for handling structs. 
 
-EXAMPLE:
-
-include raylib.e
-
-constant Width = 800
-constant Height = 600
-
-InitWindow(Width,Height,"Simple Window")
-
-SetTargetFPS(60)
-
-while not WindowShouldClose() do
-	BeginDrawing()
-	
-	ClearBackground(BLACK)
-	DrawText("Simple Window Program",Width /2.5, Height /2.5 ,20,YELLOW)
-	
-	EndDrawing()
-end while
-
-CloseWindow()
-
 LICENSE:
 
 This software is provided as-is. There is no warranty for this software. You use this software at

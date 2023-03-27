@@ -17,4 +17,4 @@ while not WindowShouldClose() do
 end while
 
 CloseWindow()
-­14.58
+Â­14.58

@@ -56,4 +56,4 @@ atom height = 600
  end while
  
  CloseWindow()
-­58.14
+Â­58.14

@@ -122,8 +122,21 @@ public constant Texture = define_c_struct({
 	C_INT --format (pixelformat type)
 })
 
-public constant Texture2D = Texture
-public constant TextureCubemap = define_c_struct({Texture})
+public constant Texture2D = define_c_struct({
+	C_UINT,
+	C_INT,
+	C_INT,
+	C_INT,
+	C_INT
+}) --same as Texture
+
+public constant TextureCubemap = define_c_struct({
+	C_UINT,
+	C_INT,
+	C_INT,
+	C_INT,
+	C_INT
+}) --same as Texture
 
 public constant RenderTexture = define_c_struct({
 	C_UINT, --id opengl framebuffer object id
@@ -131,7 +144,11 @@ public constant RenderTexture = define_c_struct({
 	Texture --depth buffer attachment texture
 })
 
-public constant RenderTexture2D = define_c_struct({RenderTexture})
+public constant RenderTexture2D = define_c_struct({
+	C_UINT,
+	Texture,
+	Texture
+}) --same as RenderTexture
 
 public constant NPatchInfo = define_c_struct({
 	Rectangle, --texture source rect
@@ -167,7 +184,13 @@ public constant Camera3D = define_c_struct({
 	C_INT --projection
 })
 
-public constant Camera = define_c_struct({Camera3D})
+public constant Camera = define_c_struct({
+	Vector3,
+	Vector3,
+	Vector3,
+	C_FLOAT,
+	C_INT
+}) --same as Camera3D
 
 public constant Camera2D = define_c_struct({
 	Vector2, --camera offset
@@ -3322,4 +3345,4 @@ end procedure
 public procedure DetachAudioMixedProcessor(atom cb)
 	c_proc(xDetachAudioMixedProcessor,{cb})
 end procedure
-­125.35
+­193.21

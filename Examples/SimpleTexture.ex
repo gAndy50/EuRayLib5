@@ -23,4 +23,3 @@ end while
 UnloadTexture(tex)
 
 CloseWindow()
-­10.16

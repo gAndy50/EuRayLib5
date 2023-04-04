@@ -678,4 +678,4 @@ export constant xQuaternionEquals = define_c_func(ray,"+QuaternionEquals",{Quate
 public function QuaternionEquals(sequence p,sequence q)
 	return c_func(xQuaternionEquals,{p,q})
 end function
-­679.39
+Â­679.39

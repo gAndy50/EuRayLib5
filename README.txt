@@ -1,6 +1,6 @@
 Raylib 4.5 Euphoria Wrapper
 Written by Andy P. (Icy_Viking)
-Raylib Version: 4.5
+Raylib Version: 5.0
 Euphoria Version: 4.1.0 Beta 2
 
 (c) EuRayLib 4 2023
@@ -10,7 +10,7 @@ Paypal:paypal.me/IcyViking
 
 ABOUT:
 
-This is a wrapper of Raylib version 4.5 for the Euphoria programming language. It is a multimedia
+This is a wrapper of Raylib version 5.0 for the Euphoria programming language. It is a multimedia
 library that can be used to make games. You'll need a good handling on the Euphoria programming
 language to use this wrapper sucessfully. This wrapper uses the Visual Studio 32-bit build of the
 Raylib DLL. Some examples are included to help you use this wrapper.

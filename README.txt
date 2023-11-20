@@ -23,6 +23,6 @@ This software is provided as-is. There is no warranty for this software. You use
 your own risk. You may not hold the author/developer or Euphoria community responsible for any
 wrong-doing while using this software. You may use this wrapper to make Euphoria based programs
 that use Raylib. Programs you create with this wrapper are yours to distribute as you please. You
-may not claim you wrote the original EuRayLib4 wrapper. 
+may not claim you wrote the original EuRayLib5 wrapper. 
 
 Thanks for using EuRayLib4!

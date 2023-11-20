@@ -1,7 +1,7 @@
---EuRaylib 4.5
+--EuRaylib 5.0
 --Euphoria Wrapper by Andy P.
 --Euphoria Ver: 4.1.0 Beta 2 (using FFI library)
---Ray Ver: 4.5
+--Ray Ver: 5.0
 
 include std/ffi.e
 include std/os.e
@@ -3489,4 +3489,4 @@ end procedure
 public procedure DetachAudioMixedProcessor(atom cb)
 	c_proc(xDetachAudioMixedProcessor,{cb})
 end procedure
-­1977.58
+­4.14

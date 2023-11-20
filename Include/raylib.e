@@ -18,11 +18,11 @@ end ifdef
 
 --Flags
 --Version
-public constant RAYLIB_VERSION_MAJOR = 4,
-				RAYLIB_VERSION_MINOR = 5,
+public constant RAYLIB_VERSION_MAJOR = 5,
+				RAYLIB_VERSION_MINOR = 0,
 				RAYLIB_VERSION_PATCH = 0
 				
-public constant RAYLIB_VERSION = "4.5"
+public constant RAYLIB_VERSION = "5.0"
 
 --Some Math
 public constant PI = 3.14159265358979323846
@@ -338,6 +338,18 @@ public constant FilePathList = define_c_struct({
 	C_UINT, --capacity
 	C_UINT, --count
 	C_CHAR --paths
+})
+
+public constant AutomationEvent = define_c_struct({
+	C_UINT, --frame
+	C_UINT, --type
+	{C_INT,4} --params[4]
+})
+
+public constant AutomationEventList = define_c_struct({
+	C_UINT, --capacity
+	C_UINT, --count
+	C_POINTER --events*
 })
 
 public enum type ConfigFlags
@@ -1211,6 +1223,17 @@ public procedure SetConfigFlags(atom flags)
 	c_proc(xSetConfigFlags,{flags})
 end procedure
 
+public constant xLoadRandomSequence = define_c_func(ray,"+LoadRandomSequence",{C_UINT,C_INT,C_INT},C_POINTER),
+				xUnloadRandomSequence = define_c_proc(ray,"+UnloadRandomSequence",{C_POINTER})
+				
+public function LoadRandomSequence(atom count,atom min,atom max)
+	return c_func(xLoadRandomSequence,{count,min,max})
+end function
+
+public procedure UnloadRandomSequence(atom s)
+	c_proc(xUnloadRandomSequence,{s}) --sequence
+end procedure
+
 export constant xTraceLog = define_c_proc(ray,"+TraceLog",{C_INT,C_STRING}),
 				xSetTraceLogLevel = define_c_proc(ray,"+SetTraceLogLevel",{C_INT}),
 				xMemAlloc = define_c_func(ray,"+MemAlloc",{C_UINT},C_POINTER),
@@ -1401,6 +1424,48 @@ end function
 public function DecodeDataBase64(atom data,atom osize)
 	return c_func(xDecodeDataBase64,{data,osize})
 end function
+
+--Automation Event Functions
+public constant xLoadAutomationEventList = define_c_func(ray,"+LoadAutomationEventList",{C_STRING},AutomationEventList),
+				xUnloadAutomationEventList = define_c_proc(ray,"+UnloadAutomationEventList",{C_POINTER}),
+				xExportAutomationEventList = define_c_func(ray,"+ExportAutomationEventList",{C_POINTER,C_STRING},C_BOOL),
+				xSetAutomationEventList = define_c_proc(ray,"+SetAutomationEventList",{C_POINTER}),
+				xSetAutomationEventBaseFrame = define_c_proc(ray,"+SetAutomationEventBaseFrame",{C_INT}),
+				xStartAutomationEventRecording = define_c_proc(ray,"+StartAutomationEventRecording",{}),
+				xStopAutomationEventRecording = define_c_proc(ray,"+StopAutomationEventRecording",{}),
+				xPlayAutomationEvent = define_c_proc(ray,"+PlayAutomationEvent",{AutomationEvent})
+				
+public function LoadAutomationEventList(sequence fname)
+	return c_func(xLoadAutomationEventList,{fname})
+end function
+
+public procedure UnloadAutomationEventList(atom l)
+	c_proc(xUnloadAutomationEventList,{l}) --list
+end procedure
+
+public function ExportAutomationEventList(sequence l,sequence fname)
+	return c_func(xExportAutomationEventList,{l,fname}) --l = list
+end function
+
+public procedure SetAutomationEventList(atom l)
+	c_proc(xSetAutomationEventList,{l})
+end procedure
+
+public procedure SetAutomationEventBaseFrame(atom frame)
+	c_proc(xSetAutomationEventBaseFrame,{frame})
+end procedure
+
+public procedure StartAutomationEventRecording()
+	c_proc(xStartAutomationEventRecording,{})
+end procedure
+
+public procedure StopAutomationEventRecording()
+	c_proc(xStopAutomationEventRecording,{})
+end procedure
+
+public procedure PlayAutomationEvent(sequence evt)
+	c_proc(xPlayAutomationEvent,{evt})
+end procedure
 
 --Keyboard Functions
 export constant xIsKeyPressed = define_c_func(ray,"+IsKeyPressed",{C_INT},C_BOOL),
@@ -1832,6 +1897,85 @@ end procedure
 public procedure DrawPolyLinesEx(sequence center,atom sides,atom rad,atom rot,atom thick,sequence col)
 	c_proc(xDrawPolyLinesEx,{center,sides,rad,rot,thick,col})
 end procedure
+
+--Spline drawing functions
+public constant xDrawSplineLinear = define_c_proc(ray,"+DrawSplineLinear",{C_POINTER,C_INT,C_FLOAT,Color}),
+				xDrawSplineBasis = define_c_proc(ray,"+DrawSplineBasis",{C_POINTER,C_INT,C_FLOAT,Color}),
+				xDrawSplineCatmullRom = define_c_proc(ray,"+DrawSplineCatmullRom",{C_POINTER,C_INT,C_FLOAT,Color}),
+				xDrawSplineBezierQuadratic = define_c_proc(ray,"+DrawSplineBezierQuadratic",{C_POINTER,C_INT,C_FLOAT,Color}),
+				xDrawSplineBezierCubic = define_c_proc(ray,"+DrawSplineBezierCubic",{C_POINTER,C_INT,C_FLOAT,Color}),
+				xDrawSplineSegmentLinear = define_c_proc(ray,"+DrawSplineSegmentLinear",{Vector2,Vector2,C_FLOAT,Color}),
+				xDrawSplineSegmentBasis = define_c_proc(ray,"+DrawSplineSegmentBasis",{Vector2,Vector2,Vector2,Vector4,C_FLOAT,Color}),
+				xDrawSplineSegmentCatmullRom = define_c_proc(ray,"+DrawSplineSegmentCatmullRom",{Vector2,Vector2,Vector2,Vector2,C_FLOAT,Color}),
+				xDrawSplineSegmentBezierQuadratic = define_c_proc(ray,"+DrawSplineBezierQuadratic",{Vector2,Vector2,Vector2,C_FLOAT,Color}),
+				xDrawSplineSegmentBezierCubic = define_c_proc(ray,"+DrawSplineBezierCubic",{Vector2,Vector2,Vector2,Vector2,C_FLOAT,Color})
+				
+public procedure DrawSplineLinear(atom pts,atom count,atom thick,sequence col)
+	c_proc(xDrawSplineLinear,{pts,count,thick,col})
+end procedure
+
+public procedure DrawSplineBasis(atom pts,atom count,atom thick,sequence col)
+	c_proc(xDrawSplineBasis,{pts,count,thick,col})
+end procedure
+
+public procedure DrawSplineCatmullRom(atom pts,atom count,atom thick,sequence col)
+	c_proc(xDrawSplineCatmullRom,{pts,count,thick,col})
+end procedure
+
+public procedure DrawSplineBezierQuadratic(atom pts,atom count,atom thick,sequence col)
+	c_proc(xDrawSplineBezierQuadratic,{pts,count,thick,col})
+end procedure
+
+public procedure DrawSplineBezierCubic(atom pts,atom count,atom thick,sequence col)
+	c_proc(xDrawSplineBezierCubic,{pts,count,thick,col})
+end procedure
+
+public procedure DrawSplineSegmentLinear(sequence p1,sequence p2,atom thick,sequence col)
+	c_proc(xDrawSplineSegmentLinear,{p1,p2,thick,col})
+end procedure
+
+public procedure DrawSplineSegmentBasis(sequence p1,sequence p2,sequence p3,sequence p4,atom thick,sequence col)
+	c_proc(xDrawSplineSegmentBasis,{p1,p2,p3,p4,thick,col})
+end procedure
+
+public procedure DrawSplineSegmentCatmullRom(sequence p1,sequence p2,sequence p3,sequence p4,atom thick,sequence col)
+	c_proc(xDrawSplineSegmentCatmullRom,{p1,p2,p3,p4,thick,col})
+end procedure
+
+public procedure DrawSplineSegmentBezierQuadratic(sequence p1,sequence c2,sequence p3,atom thick,sequence col)
+	c_proc(xDrawSplineBezierQuadratic,{p1,c2,p3,thick,col})
+end procedure
+
+public procedure DrawSplineSegmentBezierCubic(sequence p1,sequence c2,sequence c3,sequence p4,atom thick,sequence col)
+	c_proc(xDrawSplineSegmentBezierCubic,{p1,c2,c3,p4,thick,col})
+end procedure
+
+--Spline segment point evaluation
+public constant xGetSplinePointLinear = define_c_func(ray,"+GetSplinePointLinear",{Vector2,Vector2,C_FLOAT},Vector2),
+				xGetSplinePointBasis = define_c_func(ray,"+GetSplinePointBasis",{Vector2,Vector2,Vector2,Vector2,C_FLOAT},Vector2),
+				xGetSplinePointCatmullRom = define_c_func(ray,"+GetSplinePointCatmullRom",{Vector2,Vector2,Vector2,Vector2,C_FLOAT},Vector2),
+				xGetSplinePointBezierQuad = define_c_func(ray,"+GetSplinePointBezierQuad",{Vector2,Vector2,Vector3,C_FLOAT},Vector2),
+				xGetSplinePointBezierCubic = define_c_func(ray,"+GetSplinePointBezierCubic",{Vector2,Vector2,Vector2,Vector2,C_FLOAT},Vector2)
+				
+public function GetSplinePointLinear(sequence startPos,sequence endPos,atom t)
+	return c_func(xGetSplinePointLinear,{startPos,endPos,t})
+end function
+
+public function GetSplinePointBasis(sequence p1,sequence p2,sequence p3,sequence p4,atom t)
+	return c_func(xGetSplinePointBasis,{p1,p2,p3,p4,t})
+end function
+
+public function GetSplinePointCatmullRom(sequence p1,sequence p2,sequence p3,sequence p4,atom t)
+	return c_func(xGetSplinePointCatmullRom,{p1,p2,p3,p4,t})
+end function
+
+public function GetSplinePointBezierQuad(sequence p1,sequence c2,sequence p3,atom t)
+	return c_func(xGetSplinePointBezierQuad,{p1,c2,p3,t})
+end function
+
+public function GetSplinePointBezierCubic(sequence p1,sequence c2,sequence c3,sequence p4,atom t)
+	return c_func(xGetSplinePointBezierCubic,{p1,c2,c3,p4,t})
+end function
 
 --Basic Shape Collision Detection Functions
 export constant xCheckCollisionRecs = define_c_func(ray,"+CheckCollisionRecs",{Rectangle,Rectangle},C_BOOL),
@@ -3345,4 +3489,4 @@ end procedure
 public procedure DetachAudioMixedProcessor(atom cb)
 	c_proc(xDetachAudioMixedProcessor,{cb})
 end procedure
-Â­193.21
+­1977.58

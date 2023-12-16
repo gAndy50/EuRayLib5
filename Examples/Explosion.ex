@@ -1,6 +1,5 @@
 include raylib.e
 
---TODO: Add images & sound
 constant NUM_FRAMES_PER_LINE = 5,
 		 NUM_LINES = 5
 		 
@@ -85,4 +84,4 @@ UnloadSound(fxBoom)
 
 CloseAudioDevice()
 CloseWindow()
-­10.80
+Â­10.80

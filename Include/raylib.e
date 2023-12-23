@@ -2713,7 +2713,7 @@ end function
 export constant xTextCopy = define_c_func(ray,"+TextCopy",{C_STRING,C_STRING},C_INT),
 				xTextIsEqual = define_c_func(ray,"+TextIsEqual",{C_STRING,C_STRING},C_BOOL),
 				xTextLength = define_c_func(ray,"+TextLength",{C_STRING},C_UINT),
-				xTextFormat = define_c_func(ray,"+TextFormat",{C_STRING},C_STRING),
+				xTextFormat = define_c_func(ray,"+TextFormat",{C_STRING,C_POINTER},C_STRING),
 				xTextSubtext = define_c_func(ray,"+TextSubtext",{C_STRING,C_INT,C_INT},C_STRING),
 				xTextReplace = define_c_func(ray,"+TextReplace",{C_STRING,C_STRING,C_STRING},C_STRING),
 				xTextInsert = define_c_func(ray,"+TextInsert",{C_STRING,C_STRING,C_INT},C_STRING),
@@ -2738,8 +2738,8 @@ public function TextLength(sequence t)
 	return c_func(xTextLength,{t})
 end function
 
-public function TextFormat(sequence t)
-	return c_func(xTextFormat,{t})
+public function TextFormat(sequence t,object x)
+	return c_func(xTextFormat,{t,x})
 end function
 
 public function TextSubtext(sequence t,atom pos,atom len)
@@ -3489,4 +3489,4 @@ end procedure
 public procedure DetachAudioMixedProcessor(atom cb)
 	c_proc(xDetachAudioMixedProcessor,{cb})
 end procedure
-­4.14
+­2742.31

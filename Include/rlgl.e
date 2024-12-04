@@ -260,8 +260,8 @@ export constant xrlMatrixMode = define_c_proc(ray,"+rlMatrixMode",{C_INT}),
 				xrlPushMatrix = define_c_proc(ray,"+rlPushMatrix",{}),
 				xrlPopMatrix = define_c_proc(ray,"+rlPopMatrix",{}),
 				xrlLoadIdentity = define_c_proc(ray,"+rlLoadIdentity",{}),
-				xrlTranslatef = define_c_proc(ray,"+rlTranslatef",{C_FLOAT,C_FLOAT,C_FLOAT,C_FLOAT}),
-				xrlRotatef = define_c_proc(ray,"+rlRotatef",{C_FLOAT,C_FLOAT,C_FLOAT}),
+				xrlTranslatef = define_c_proc(ray,"+rlTranslatef",{C_FLOAT,C_FLOAT,C_FLOAT}),
+				xrlRotatef = define_c_proc(ray,"+rlRotatef",{C_FLOAT,C_FLOAT,C_FLOAT,C_FLOAT}),
 				xrlScalef = define_c_proc(ray,"+rlScalef",{C_FLOAT,C_FLOAT,C_FLOAT}),
 				xrlMultMatrixf = define_c_proc(ray,"+rlMultiMatrixf",{C_POINTER}),
 				xrlFrustum = define_c_proc(ray,"+rlFrustum",{C_DOUBLE,C_DOUBLE,C_DOUBLE,C_DOUBLE,C_DOUBLE,C_DOUBLE}),
@@ -1012,4 +1012,4 @@ end procedure
 public procedure rlLoadDrawQuad()
 	c_proc(xrlLoadDrawQuad,{})
 end procedure
-­1013.27
+­288.19

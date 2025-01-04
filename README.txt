@@ -3,7 +3,7 @@ Written by Andy P. (Icy_Viking)
 Raylib Version: 5.5
 Euphoria Version: 4.1.0 Beta 2
 
-(c) EuRayLib 5 2024
+(c) EuRayLib 5 2025
 
 Contact: g_andy <at> live.com
 Paypal:paypal.me/IcyViking

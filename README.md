@@ -28,6 +28,7 @@ may not claim you wrote the original EuRayLib5 wrapper.
 
 # EXAMPLE
 ``` euphoria
+--Bouncing ball example
 include raylib.e
 
  atom width = 800

@@ -2,7 +2,7 @@ include std/ffi.e
 
 include raylib.e
 
-public constant RLGL_VERSION = "4.5"
+public constant RLGL_VERSION = "5.0"
 
 public constant RL_DEFAULT_BATCH_BUFFERS = 1,
 				RL_DEFAULT_BATCH_DRAWCALLS = 256,
@@ -1012,4 +1012,4 @@ end procedure
 public procedure rlLoadDrawQuad()
 	c_proc(xrlLoadDrawQuad,{})
 end procedure
-­288.19
+Â­288.19

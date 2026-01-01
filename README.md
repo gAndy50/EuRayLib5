@@ -4,7 +4,7 @@ Written by Andy P. (Icy_Viking)
 Raylib Version: 5.5
 Euphoria Version: 4.1.0 Beta 2
 
-(c) EuRayLib 5 2025
+(c) EuRayLib 5 2026
 
 Contact: g_andy <at> live.com
 Paypal:paypal.me/IcyViking
@@ -90,3 +90,4 @@ atom height = 600
 ```
 
 Thanks for using EuRayLib5!
+

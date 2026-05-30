@@ -1,7 +1,7 @@
 -------------------------------------------
 --Euraylib 
 --Written by Andy P. 
---Copyright (c) 2025
+--Copyright (c) 2026
 --Wrapper of Raylib 5.5 for OpenEuphoria
 --OpenEuphoria v. 4.1.0 Beta 2
 -------------------------------------------
@@ -3718,4 +3718,4 @@ end procedure
 public procedure DetachAudioMixedProcessor(object processor)
 	c_proc(xDetachAudioMixedProcessor,{processor})
 end procedure
-­1785.21
+Â­1785.21

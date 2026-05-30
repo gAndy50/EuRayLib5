@@ -1782,7 +1782,7 @@ public constant xUpdateCamera = define_c_proc(ray,"+UpdateCamera",{C_POINTER,C_I
 				xUpdateCameraPro = define_c_proc(ray,"+UpdateCameraPro",{C_POINTER,Vector3,Vector3,C_FLOAT})
 				
 public procedure UpdateCamera(atom cam,atom mode)
-	c_proc(xUpdateCameraPro,{cam,mode})
+	c_proc(xUpdateCamera,{cam,mode})
 end procedure
 
 public procedure UpdateCameraPro(atom cam,sequence movement,sequence rotation,atom zoom)
@@ -3718,4 +3718,4 @@ end procedure
 public procedure DetachAudioMixedProcessor(object processor)
 	c_proc(xDetachAudioMixedProcessor,{processor})
 end procedure
-Â­3032.18
+­1785.21

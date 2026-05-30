@@ -1,4 +1,4 @@
-# Raylib 5.0 Euphoria Wrapper
+# Raylib 5.5 Euphoria Wrapper
 
 Written by Andy P. (Icy_Viking)
 Raylib Version: 5.5

@@ -2793,19 +2793,19 @@ public procedure DrawText(sequence text,atom x,atom y,atom fontSize,sequence col
 	c_proc(xDrawText,{text,x,y,fontSize,color})
 end procedure
 
-public procedure DrawTextEx(atom font,sequence text,sequence pos,atom fontSize,atom space,sequence tint)
+public procedure DrawTextEx(sequence font,sequence text,sequence pos,atom fontSize,atom space,sequence tint)
 	c_proc(xDrawTextEx,{font,text,pos,fontSize,space,tint})
 end procedure
 
-public procedure DrawTextPro(atom font,sequence text,sequence pos,sequence origin,atom rotation,atom fontSize,atom space,sequence tint)
+public procedure DrawTextPro(sequence font,sequence text,sequence pos,sequence origin,atom rotation,atom fontSize,atom space,sequence tint)
 	c_proc(xDrawTextPro,{font,text,pos,origin,rotation,fontSize,space,tint})
 end procedure
 
-public procedure DrawTextCodepoint(atom font,atom codepoint,sequence pos,atom fontSize,sequence tint)
+public procedure DrawTextCodepoint(sequence font,atom codepoint,sequence pos,atom fontSize,sequence tint)
 	c_proc(xDrawTextCodepoint,{font,codepoint,pos,fontSize,tint})
 end procedure
 
-public procedure DrawTextCodepoints(atom font,atom codepoints,atom count,sequence pos,atom fontSize,atom space,sequence tint)
+public procedure DrawTextCodepoints(sequence font,atom codepoints,atom count,sequence pos,atom fontSize,atom space,sequence tint)
 	c_proc(xDrawTextCodepoints,{font,codepoints,count,pos,fontSize,space,tint})
 end procedure
 
@@ -3718,4 +3718,4 @@ end procedure
 public procedure DetachAudioMixedProcessor(object processor)
 	c_proc(xDetachAudioMixedProcessor,{processor})
 end procedure
-Â­1785.21
+­2808.44
